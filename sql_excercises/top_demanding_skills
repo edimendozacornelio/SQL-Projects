@@ -1,0 +1,8 @@
+select count (sj.job_id) as times_demanded, sd.skills
+from job_postings_fact as jp
+inner join skills_job_dim as sj on jp.job_id = sj.job_id
+inner join skills_dim as sd on sj.skill_id = sd.skill_id
+where jp.job_title_short = 'Data Analyst'
+group by sd.skills
+order by times_demanded desc
+limit 5
